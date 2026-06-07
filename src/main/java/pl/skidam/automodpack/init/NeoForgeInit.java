@@ -11,6 +11,9 @@ import pl.skidam.automodpack.networking.ModPackets;
 import pl.skidam.automodpack_core.loader.LoaderManagerService;
 import pl.skidam.automodpack_loader_core.screen.ScreenManager;
 
+import net.neoforged.fml.loading.FMLEnvironment;
+import net.neoforged.api.distmarker.Dist;
+    
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
@@ -29,7 +32,7 @@ public class NeoForgeInit {
 
          Common.init();
 
-         if (LOADER_MANAGER.getEnvironmentType() == LoaderManagerService.EnvironmentType.SERVER) {
+         if (FMLEnvironment.dist == Dist.DEDICATED_SERVER) {
             Common.serverInit();
          } else {
              ModPackets.registerC2SPackets();
